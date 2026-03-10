@@ -1,0 +1,52 @@
+create table alunos(
+matricula char(14) primary key,
+nome varchar(255) not null,
+curso varchar(255) not null,
+email varchar(255) not null
+);
+
+INSERT INTO alunos  (matricula, nome, curso, email ) VALUES 
+('090.090.898', 'breno','ds', 'gunin@gmail' );
+select * from alunos;
+
+create table  professores(
+id_professores int auto_increment primary key,
+nome varchar(255) not null,
+area varchar(255) not null
+);
+
+INSERT INTO professores(id_professores, nome, area) values 
+('01', 'enzo', 'programa');
+select * from professores;
+
+create table diciplina(
+id_diciplina char(14),
+id_professores int,
+nome_diciplina  varchar(255) not null,
+carga  double not null,
+primary key (id_diciplina),
+foreign key (id_professores) references professores(id_professores)
+); 
+
+insert into diciplina(id_diciplina, id_professores, nome_diciplina, carga) values 
+(01, '01', 'matematica', '90' );
+select * from diciplina;
+
+create table matricula(
+id_matricula int auto_increment primary key,
+id_professores int,
+matricula_aluno char(14),
+semestre int,
+foreign key (matricula_aluno) references alunos(matricula)
+);
+
+insert into matricula(id_matricula, id_professores, matricula_aluno, semestre) values 
+(01,'02', '090.090.898', '90');
+select * from matricula;
+
+
+
+drop table jogador;
+drop table clientes;
+drop table tim;
+
