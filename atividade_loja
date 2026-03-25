@@ -1,0 +1,48 @@
+use loja;
+
+create table clientes (
+id int not null primary key,
+nome varchar (30) not null,
+email varchar(100) unique not null,
+telefone char(20) unique not null
+);
+
+create table produtos (
+id int not null primary key,
+nome_produto varchar(30) not null,
+preco float not null,
+quantidade int not null
+);
+
+create table pedidos (
+id int not null primary key,
+id_cliente int not null,
+id_produto int not null,
+data_pedido date not null,
+foreign key (id_cliente) references clientes(id)
+); 
+
+create table itens (
+id_iten int  primary key,
+id_produto int not null,
+id_pedido int not null,
+quantidade_comp int not null,
+foreign key (id_produto) references produtos(id),    
+foreign key (id_pedido) references pedidos(id)
+);
+
+insert into clientes values
+('12', 'Bruno','123@yahul.com.br','+55 71 999619339' );
+select * from clientes;
+
+insert into produtos values 
+('05', 'poo', '34', '30');
+select * from produtos;
+
+insert into pedidos values
+('09', '12' '05' '08/09/007');
+select * from pedidos;
+
+insert into itens values 
+('03', '05', '09', '20');
+select * from itens;  
